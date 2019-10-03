@@ -1,6 +1,6 @@
 {
   "name": "@coara/nestjs-aws-s3-manager",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Aws s3 manager for netsjs",
   "author": "Coara",
   "license": "MIT",
@@ -50,5 +50,8 @@
   "bugs": {
     "url": "https://github.com/coaraco/nestjs-aws-s3-manager/issues"
   },
-  "homepage": "https://github.com/coaraco/nestjs-aws-s3-manager#readme"
+  "homepage": "https://github.com/coaraco/nestjs-aws-s3-manager#readme",
+  "dependencies": {
+    "@nestjs/swagger": "^3.1.0"
+  }
 }
