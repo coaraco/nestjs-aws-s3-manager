@@ -60,7 +60,7 @@ export class AppModule {}
 ### API Endpoints
 
 ```bash
-curl -F 'file=@path/to/local/file' http://localhost/images
+curl -F 'file=@path/to/local/file' http://localhost:3000/images
 ```
 
 That's it!
