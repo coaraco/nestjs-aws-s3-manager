@@ -9,8 +9,16 @@ export interface FileManagerModuleOptions {
 export interface FileManagerModuleAsyncOptions
   extends Pick<ModuleMetadata, 'imports'> {
   name?: string;
+  useExisting?: Type<FileManagerOptionsFactory>;
+  useClass?: Type<FileManagerOptionsFactory>;
   useFactory?: (
     ...args: any[]
   ) => Promise<FileManagerModuleOptions> | FileManagerModuleOptions;
   inject?: any[];
+}
+
+export interface FileManagerOptionsFactory {
+  createTypeOrmOptions(
+    connectionName?: string,
+  ): Promise<FileManagerModuleOptions> | FileManagerModuleOptions;
 }
