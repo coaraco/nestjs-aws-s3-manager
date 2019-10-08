@@ -38,10 +38,7 @@
     "@nestjs/common": "^6.7.0",
     "@nestjs/core": "^6.7.0",
     "reflect-metadata": "^0.1.12",
-    "rxjs": "^6.0.0",
-    "aws-sdk": "^2.541.0",
-    "multer": "^1.4.2",
-    "multer-s3": "^2.9.0"
+    "rxjs": "^6.0.0"
   },
   "repository": {
     "type": "git",
@@ -52,6 +49,9 @@
   },
   "homepage": "https://github.com/coaraco/nestjs-aws-s3-manager#readme",
   "dependencies": {
-    "@nestjs/swagger": "^3.1.0"
+    "@nestjs/swagger": "^3.1.0",
+    "multer-s3": "^2.9.0",
+    "aws-sdk": "^2.541.0",
+    "multer": "^1.4.2"
   }
 }
