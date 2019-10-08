@@ -40,7 +40,7 @@ With Async
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { RedisModule } from 'nestjs-redis';
+import { FileManagerModule } from '@coara/nestjs-aws-s3-manager';
 
 @Module({
   imports: [
@@ -49,7 +49,7 @@ import { RedisModule } from 'nestjs-redis';
         awsAccessKeyId: configService.get('AWS_ACCESS_KEY_ID'),
         awsSecretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),
         awsBucketName: 'my-bucket-name',
-      })
+      }),
       inject: [ConfigService],
     }),
   ],
