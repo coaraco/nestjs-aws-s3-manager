@@ -69,7 +69,6 @@ export class FileManagerCoreModule {
             }),
           ],
           useFactory: (optionsAsync: FileManagerModuleOptions) => {
-            Logger.log(optionsAsync.awsSecretAccessKey);
             return {
               storage: multerS3({
                 s3: new AWS.S3({
