@@ -8,13 +8,10 @@ export interface FileManagerModuleOptions {
 
 export interface FileManagerModuleAsyncOptions
   extends Pick<ModuleMetadata, 'imports'> {
-  name?: string;
-  useExisting?: Type<FileManagerOptionsFactory>;
-  useClass?: Type<FileManagerOptionsFactory>;
-  useFactory?: (
+  useFactory: (
     ...args: any[]
   ) => Promise<FileManagerModuleOptions> | FileManagerModuleOptions;
-  inject?: any[];
+  inject: any[];
 }
 
 export interface FileManagerOptionsFactory {

@@ -50,21 +50,22 @@ export class FileManagerCoreModule {
   }
 
   static forRootAsync(options: FileManagerModuleAsyncOptions): DynamicModule {
+    const imports = options.imports ? options.imports : [];
     return {
       module: FileManagerCoreModule,
       controllers: [FileManagerController],
       providers: [FileManagerService],
       imports: [
-        ...options.imports,
+        ...imports,
         ConfigModule.forRoot({
           providers: [this.createAsyncProviders(options)],
-          imports: options.imports,
+          imports,
         }),
         MulterModule.registerAsync({
           imports: [
             ConfigModule.forRoot({
               providers: [this.createAsyncProviders(options)],
-              imports: options.imports,
+              imports,
             }),
           ],
           useFactory: (optionsAsync: FileManagerModuleOptions) => {
