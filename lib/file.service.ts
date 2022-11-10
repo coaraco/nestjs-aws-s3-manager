@@ -1,6 +1,4 @@
-import { Injectable, Req, Res } from '@nestjs/common';
-import * as multer from 'multer';
-import * as AWS from 'aws-sdk';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class FileManagerService {}

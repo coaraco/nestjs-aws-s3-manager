@@ -5,20 +5,26 @@ import {
   UploadedFile,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiOperation, ApiConsumes, ApiImplicitFile } from '@nestjs/swagger';
+import { ApiOperation, ApiConsumes, ApiBody } from '@nestjs/swagger';
 
 @Controller('/images')
 export class FileManagerController {
   @Post('/upload')
   @UseInterceptors(FileInterceptor('file'))
-  @ApiOperation({ title: 'upload', operationId: 'uploadCustomers' })
+  @ApiOperation({ description: 'upload', operationId: 'uploadCustomers' })
   @ApiConsumes('multipart/form-data')
-  @ApiImplicitFile({
-    name: 'file',
-    required: true,
-    description: 'image',
+  @ApiBody({
+    schema: {
+      type: "object",
+      properties: {
+        file: {
+          type: "string",
+          format: "binary",
+        }
+      }
+    }
   })
   public async upload(@UploadedFile() file: Express.Multer.File) {
-    return { url: file.location };
+    return { url: file.destination };
   }
 }

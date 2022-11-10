@@ -2,7 +2,6 @@ import {
   Module,
   DynamicModule,
   Global,
-  Logger,
   Provider,
 } from '@nestjs/common';
 import { FileManagerController } from './file-manager.controller';
@@ -14,7 +13,7 @@ import {
 import { FILE_MANAGER_MODULE_OPTIONS } from './file-manager.constants';
 import { MulterModule } from '@nestjs/platform-express';
 import * as multerS3 from 'multer-s3';
-import * as AWS from 'aws-sdk';
+import { S3Client } from '@aws-sdk/client-s3';
 import { ConfigModule } from './config.module';
 
 @Global()
@@ -34,9 +33,11 @@ export class FileManagerCoreModule {
       imports: [
         MulterModule.register({
           storage: multerS3({
-            s3: new AWS.S3({
-              accessKeyId: options.awsAccessKeyId,
-              secretAccessKey: options.awsSecretAccessKey,
+            s3: new S3Client({
+              credentials: {
+                accessKeyId: options.awsAccessKeyId,
+                secretAccessKey: options.awsSecretAccessKey,
+              }
             }),
             bucket: options.awsBucketName,
             acl: 'public-read',
@@ -71,9 +72,11 @@ export class FileManagerCoreModule {
           useFactory: (optionsAsync: FileManagerModuleOptions) => {
             return {
               storage: multerS3({
-                s3: new AWS.S3({
-                  accessKeyId: optionsAsync.awsAccessKeyId,
-                  secretAccessKey: optionsAsync.awsSecretAccessKey,
+                s3: new S3Client({
+                  credentials: {
+                    accessKeyId: optionsAsync.awsAccessKeyId,
+                    secretAccessKey: optionsAsync.awsSecretAccessKey,
+                  }
                 }),
                 bucket: optionsAsync.awsBucketName,
                 acl: 'public-read',
