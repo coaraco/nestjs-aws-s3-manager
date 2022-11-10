@@ -7,9 +7,9 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiOperation, ApiConsumes, ApiBody } from '@nestjs/swagger';
 
-@Controller('/images')
+@Controller('images')
 export class FileManagerController {
-  @Post('/upload')
+  @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   @ApiOperation({ description: 'upload', operationId: 'uploadCustomers' })
   @ApiConsumes('multipart/form-data')
@@ -24,7 +24,7 @@ export class FileManagerController {
       }
     }
   })
-  public async upload(@UploadedFile() file: Express.Multer.File) {
-    return { url: file.destination };
+  public async upload(@UploadedFile() file: any) {
+    return { url: file.location };
   }
 }

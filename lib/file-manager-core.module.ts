@@ -34,6 +34,7 @@ export class FileManagerCoreModule {
         MulterModule.register({
           storage: multerS3({
             s3: new S3Client({
+              region: options.awsRegion,
               credentials: {
                 accessKeyId: options.awsAccessKeyId,
                 secretAccessKey: options.awsSecretAccessKey,
@@ -73,6 +74,7 @@ export class FileManagerCoreModule {
             return {
               storage: multerS3({
                 s3: new S3Client({
+                  region: optionsAsync.awsRegion,
                   credentials: {
                     accessKeyId: optionsAsync.awsAccessKeyId,
                     secretAccessKey: optionsAsync.awsSecretAccessKey,
