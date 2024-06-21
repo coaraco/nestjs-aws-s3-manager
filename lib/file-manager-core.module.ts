@@ -6,7 +6,7 @@ import {
   Provider,
 } from '@nestjs/common';
 import { MulterModule } from '@nestjs/platform-express';
-import multerS3 from 'multer-s3-transform-2';
+import * as multerS3 from 'multer-s3';
 import { ConfigModule } from './config.module';
 import { FILE_MANAGER_MODULE_OPTIONS } from './file-manager.constants';
 import { FileManagerController } from './file-manager.controller';
