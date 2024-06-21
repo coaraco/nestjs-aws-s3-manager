@@ -1,6 +1,6 @@
 {
   "name": "@coara/nestjs-aws-s3-manager",
-  "version": "10.3.12",
+  "version": "10.3.13",
   "description": "Aws s3 manager for nestjs",
   "author": "Coara",
   "license": "MIT",
