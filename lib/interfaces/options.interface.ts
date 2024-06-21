@@ -4,7 +4,7 @@ export interface FileManagerModuleOptions {
   awsBucketName: string;
   awsAccessKeyId: string;
   awsSecretAccessKey: string;
-  awsRegion: string;
+  awsRegion?: string;
 }
 
 export interface FileManagerModuleAsyncOptions
