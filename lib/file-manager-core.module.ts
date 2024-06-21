@@ -1,20 +1,20 @@
+import { S3Client } from '@aws-sdk/client-s3';
 import {
-  Module,
   DynamicModule,
   Global,
+  Module,
   Provider,
 } from '@nestjs/common';
+import { MulterModule } from '@nestjs/platform-express';
+import multerS3 from 'multer-s3-transform-2';
+import { ConfigModule } from './config.module';
+import { FILE_MANAGER_MODULE_OPTIONS } from './file-manager.constants';
 import { FileManagerController } from './file-manager.controller';
 import { FileManagerService } from './file.service';
 import {
-  FileManagerModuleOptions,
   FileManagerModuleAsyncOptions,
+  FileManagerModuleOptions,
 } from './interfaces/options.interface';
-import { FILE_MANAGER_MODULE_OPTIONS } from './file-manager.constants';
-import { MulterModule } from '@nestjs/platform-express';
-import * as multerS3 from 'multer-s3';
-import { S3Client } from '@aws-sdk/client-s3';
-import { ConfigModule } from './config.module';
 
 @Global()
 @Module({})

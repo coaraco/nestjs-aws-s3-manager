@@ -1,9 +1,9 @@
 import {
-  Module,
   DynamicModule,
+  ForwardReference,
+  Module,
   Provider,
   Type,
-  ForwardReference,
 } from '@nestjs/common';
 
 @Module({})
