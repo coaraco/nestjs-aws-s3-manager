@@ -44,8 +44,8 @@ export class FileManagerCoreModule {
             bucket: options.awsBucketName,
             acl: 'public-read',
             key(request, file, cb) {
-              if (options.filePath) {
-                cb(null, `${options.filePath}/${randomUUID()}`);
+              if (options.isFileNamePath) {
+                cb(null, `${file.originalname}/${randomUUID()}`);
               } else {
                 cb(null, `${Date.now().toString()} - ${file.originalname}`);
               }
@@ -89,8 +89,8 @@ export class FileManagerCoreModule {
                 bucket: optionsAsync.awsBucketName,
                 acl: 'public-read',
                 key(request, file, cb) {
-                  if (optionsAsync.filePath) {
-                    cb(null, `${optionsAsync.filePath}/${randomUUID()}`);
+                  if (optionsAsync.isFileNamePath) {
+                    cb(null, `${file.originalname}/${randomUUID()}`);
                   } else {
                     cb(null, `${Date.now().toString()} - ${file.originalname}`);
                   }
