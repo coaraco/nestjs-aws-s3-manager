@@ -15,7 +15,7 @@ import {
   FileManagerModuleAsyncOptions,
   FileManagerModuleOptions,
 } from './interfaces/options.interface';
-
+import { randomUUID } from 'crypto';
 @Global()
 @Module({})
 export class FileManagerCoreModule {
@@ -44,7 +44,11 @@ export class FileManagerCoreModule {
             bucket: options.awsBucketName,
             acl: 'public-read',
             key(request, file, cb) {
-              cb(null, `${Date.now().toString()} - ${file.originalname}`);
+              if (options.filePath) {
+                cb(null, `${options.filePath}/${randomUUID()}`);
+              } else {
+                cb(null, `${Date.now().toString()} - ${file.originalname}`);
+              }
             },
           }),
         }),
@@ -85,7 +89,11 @@ export class FileManagerCoreModule {
                 bucket: optionsAsync.awsBucketName,
                 acl: 'public-read',
                 key(request, file, cb) {
-                  cb(null, `${Date.now().toString()} - ${file.originalname}`);
+                  if (optionsAsync.filePath) {
+                    cb(null, `${optionsAsync.filePath}/${randomUUID()}`);
+                  } else {
+                    cb(null, `${Date.now().toString()} - ${file.originalname}`);
+                  }
                 },
               }),
             };
