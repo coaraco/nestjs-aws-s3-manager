@@ -45,7 +45,12 @@ export class FileManagerCoreModule {
             acl: 'public-read',
             key(request, file, cb) {
               if (options.isFileNamePath) {
-                cb(null, `${file.originalname}/${randomUUID()}`);
+                const path = file.originalname.split('-');
+                if (path.length === 2) {
+                  cb(null, `${path[0]}/${path[1]}/${randomUUID()}`);
+                } else {
+                  cb(null, `${file.originalname}/${randomUUID()}`);
+                }
               } else {
                 cb(null, `${Date.now().toString()} - ${file.originalname}`);
               }
@@ -90,7 +95,12 @@ export class FileManagerCoreModule {
                 acl: 'public-read',
                 key(request, file, cb) {
                   if (optionsAsync.isFileNamePath) {
-                    cb(null, `${file.originalname}/${randomUUID()}`);
+                    const path = file.originalname.split('-');
+                    if (path.length === 2) {
+                      cb(null, `${path[0]}/${path[1]}/${randomUUID()}`);
+                    } else {
+                      cb(null, `${file.originalname}/${randomUUID()}`);
+                    }
                   } else {
                     cb(null, `${Date.now().toString()} - ${file.originalname}`);
                   }
