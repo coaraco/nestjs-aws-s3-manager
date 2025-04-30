@@ -15,7 +15,7 @@ import {
   FileManagerModuleAsyncOptions,
   FileManagerModuleOptions,
 } from './interfaces/options.interface';
-
+import { randomUUID } from 'crypto';
 @Global()
 @Module({})
 export class FileManagerCoreModule {
@@ -35,6 +35,7 @@ export class FileManagerCoreModule {
           storage: multerS3({
             s3: new S3Client({
               region: options.awsRegion,
+              endpoint: options.awsEndpoint,
               credentials: {
                 accessKeyId: options.awsAccessKeyId,
                 secretAccessKey: options.awsSecretAccessKey,
@@ -43,7 +44,16 @@ export class FileManagerCoreModule {
             bucket: options.awsBucketName,
             acl: 'public-read',
             key(request, file, cb) {
-              cb(null, `${Date.now().toString()} - ${file.originalname}`);
+              if (options.isFileNamePath) {
+                const path = file.originalname.split('-');
+                if (path.length === 2) {
+                  cb(null, `${path[0]}/${path[1]}/${randomUUID()}`);
+                } else {
+                  cb(null, `${file.originalname}/${randomUUID()}`);
+                }
+              } else {
+                cb(null, `${Date.now().toString()} - ${file.originalname}`);
+              }
             },
           }),
         }),
@@ -75,6 +85,7 @@ export class FileManagerCoreModule {
               storage: multerS3({
                 s3: new S3Client({
                   region: optionsAsync.awsRegion,
+                  endpoint: optionsAsync.awsEndpoint,
                   credentials: {
                     accessKeyId: optionsAsync.awsAccessKeyId,
                     secretAccessKey: optionsAsync.awsSecretAccessKey,
@@ -83,7 +94,16 @@ export class FileManagerCoreModule {
                 bucket: optionsAsync.awsBucketName,
                 acl: 'public-read',
                 key(request, file, cb) {
-                  cb(null, `${Date.now().toString()} - ${file.originalname}`);
+                  if (optionsAsync.isFileNamePath) {
+                    const path = file.originalname.split('-');
+                    if (path.length === 2) {
+                      cb(null, `${path[0]}/${path[1]}/${randomUUID()}`);
+                    } else {
+                      cb(null, `${file.originalname}/${randomUUID()}`);
+                    }
+                  } else {
+                    cb(null, `${Date.now().toString()} - ${file.originalname}`);
+                  }
                 },
               }),
             };
