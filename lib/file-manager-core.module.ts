@@ -1,10 +1,5 @@
 import { S3Client } from '@aws-sdk/client-s3';
-import {
-  DynamicModule,
-  Global,
-  Module,
-  Provider,
-} from '@nestjs/common';
+import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
 import { MulterModule } from '@nestjs/platform-express';
 import * as multerS3 from 'multer-s3';
 import { ConfigModule } from './config.module';
@@ -38,7 +33,7 @@ export class FileManagerCoreModule {
               credentials: {
                 accessKeyId: options.awsAccessKeyId,
                 secretAccessKey: options.awsSecretAccessKey,
-              }
+              },
             }),
             bucket: options.awsBucketName,
             acl: 'public-read',
@@ -78,7 +73,7 @@ export class FileManagerCoreModule {
                   credentials: {
                     accessKeyId: optionsAsync.awsAccessKeyId,
                     secretAccessKey: optionsAsync.awsSecretAccessKey,
-                  }
+                  },
                 }),
                 bucket: optionsAsync.awsBucketName,
                 acl: 'public-read',

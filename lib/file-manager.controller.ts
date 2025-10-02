@@ -15,16 +15,16 @@ export class FileManagerController {
   @ApiConsumes('multipart/form-data')
   @ApiBody({
     schema: {
-      type: "object",
+      type: 'object',
       properties: {
         file: {
-          type: "string",
-          format: "binary",
-        }
-      }
-    }
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
   })
-  public async upload(@UploadedFile() file: any) {
+  public upload(@UploadedFile() file: Express.MulterS3.File) {
     return { url: file.location };
   }
 }
