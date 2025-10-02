@@ -5,6 +5,8 @@ export interface FileManagerModuleOptions {
   awsAccessKeyId: string;
   awsSecretAccessKey: string;
   awsRegion?: string;
+  awsEndpoint?: string;
+  isFileNamePath?: boolean;
 }
 
 export interface FileManagerModuleAsyncOptions
